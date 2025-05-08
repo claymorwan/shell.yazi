@@ -15,7 +15,7 @@ Add this to your `keymaps.toml` file:
 prepend_keymap = [
 	# Shell plugin
 	{ on = [ ":" ], run = "plugin shell block" },
-  { on = [ ";" ], run = "plugin shell noblock" },
+	{ on = [ ";" ], run = "plugin shell noblock" },
 ]
 ```
 
