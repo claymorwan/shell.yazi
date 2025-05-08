@@ -1,6 +1,6 @@
 # zsh.yazi
 
-A [yazi](https://github.com/sxyazi/yazi) plugin to use shell aliases and zsh plugins in the shell input box.
+A [yazi](https://github.com/sxyazi/yazi) plugin to run commands using your shell in order to enable your aliases and zsh plugins in the shell input box.
 Based on [this](https://github.com/sxyazi/yazi/issues/1206#issuecomment-2188759899) script with some tweaks of mine.
 For now only works with [Bash](https://www.gnu.org/software/bash/), [Zsh](https://www.zsh.org/) and other shell that works like them.
 
@@ -14,8 +14,8 @@ Add this to your `keymaps.toml` file:
 ```
 prepend_keymap = [
 	# Shell plugin
-	{ on = [ ":" ], run = "plugin shell block" },
-	{ on = [ ";" ], run = "plugin shell noblock" },
+	{ on = [ ":" ], run = "plugin shell block", 	desc = "Run a shell command with your shell (block until finishes)" },
+	{ on = [ ";" ], run = "plugin shell noblock", desc = "Run a shell command with your shell" },
 ]
 ```
 
