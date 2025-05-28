@@ -1,4 +1,4 @@
-local shell = os.getenv("SHELL")
+-- local shell = os.getenv("SHELL")
 
 -- Get path of hovered file path
 local path_sep = package.config:sub(1, 1)
@@ -15,21 +15,22 @@ local get_hovered_path = ya.sync(function(state)
     end
 end)
 
--- Get current dir
-local current_dir = ya.sync(function()
-    return tostring(cx.active.current.cwd)
-end)
+-- Get current dir (ts not work for sum reason)
+-- local current_dir = ya.sync(function()
+--     return tostring(cx.active.current.cwd)
+-- end)
 
 -- Get file name
 local function get_file_name(url)
     return url:match("^.+/(.+)$")
 end
 
-
+-- check if selected is a dir
 local function isdir(path)
     return exists(path .. "/")
 end
 
+-- makes the install file (probably a better way to do it but i don't car)
 local function mk_yml_file(name, game_id, exe, pfx, is_wine)
     local runner = (is_wine and "wine" or "linux")
     local yml_file = io.open(game_id .. ".yml", "w")
@@ -49,26 +50,23 @@ local function mk_yml_file(name, game_id, exe, pfx, is_wine)
     yml_file:close()
 end
 
--- runs ts cmd
-local function run_command(cmd, args)
-    local cwd = current_dir()
-    local cmd_err = Command(cmd)
-        :args(args)
-        -- :cwd(cwd)
-        :stdin(Command.INHERIT)
-        :stdout(Command.PIPED)
-        :stderr(Command.PIPED)
-        :spawn()
-end
+-- runs ts cmd (unused rn until i fix the auto install)
+-- local function run_command(cmd, args)
+--     local cwd = current_dir()
+--     local cmd_err = Command(cmd)
+--         :args(args)
+--         -- :cwd(cwd)
+--         :stdin(Command.INHERIT)
+--         :stdout(Command.PIPED)
+--         :stderr(Command.PIPED)
+--         :spawn()
+-- end
 
 return {
     entry = function()
         ya.mgr_emit("escape", { visual = true })
 
-        -- Check if directory exists
-
         local exe_path = get_hovered_path()
-        ya.notify({ title = "Lutris", content = current_dir, level = "warn", timeout = 5 })
         -- Check if exe_path isn't a directory
         if string.sub(exe_path, -1) == path_sep then
             return ya.notify({ title = "Lutris", content = "No file selected", level = "warn", timeout = 5 })
@@ -94,25 +92,20 @@ return {
 
             -- Makes the install file
             local mk_status, mk_err = ya.sync(mk_yml_file(game_name, game_identifier, exe_path, pfx_path, is_win_game))
-            if not mk_status or not mk_status.success then
-                ya.notify({
-                    title = "Lutris",
-                    content = string.format("Ts not making: %s", mk_status and mk_status.code or mk_err),
-                    level = "error",
-                    timeout = 5
-                })
-            end
-
-            local inst_status, inst_err = run_command(shell,
-                { "-c", "lutris -i " .. current_dir() .. game_identifier .. ".yml; exit" })
-            if not inst_status or not inst_status.success then
-                ya.notify({
-                    title = "Lutris",
-                    content = string.format("Ts not installing: %s", inst_status and inst_status.code or inst_err),
-                    level = "error",
-                    timeout = 5
-                })
-            end
+            -- this don't work either idk why
+            -- if not mk_status or not mk_status.success then
+            --     ya.notify({
+            --         title = "Lutris",
+            --         content = string.format("Ts not making: %s", mk_status and mk_status.code or mk_err),
+            --         level = "error",
+            --         timeout = 5
+            --     })
+            -- end
+            ya.notify({
+                title = "Lutris",
+                content = 'Install by running "lutris -i ' .. game_identifier .. '.yml" or directly in the app',
+                timeout = "10"
+            })
         end
     end,
 }
