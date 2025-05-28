@@ -7,12 +7,12 @@ For now only works with [Bash](https://www.gnu.org/software/bash/), [Zsh](https:
 >[!CAUTION]
 > This plugins has only been tested on Linux, it should be working on MacOS as it uses zsh and has the `read` command. It is unlikely for Windows as idk if it works with Powershell and idk an equivalent for the `read` command
 
-# Installation
-## Install plugin
+## Installation
+### Install plugin
 ```bash
-ya pack -a 'claymorwan/yazi-plugins:shell'
+ya pack -a claymorwan/yazi-plugins:shell
 ```
-## Setup keymaps
+### Setup keymaps
 Add this to your `keymaps.toml` file:
 ```toml
 prepend_keymap = [
@@ -23,13 +23,13 @@ prepend_keymap = [
 ]
 ```
 
-# Usage
+## Usage
 Works like the usual shel block command:
 - press `;` for shell commands
 - press `:` for shell commands (as block)
 - press `!` for shell commands (as block, will immeditaly skip and close after running the command)
 
-## Skipping stuff in your shell config file
+### Skipping stuff in your shell config file
 If you have stuff that runs when loading your shell (like a neofetch for example) you probably don't want it to run when using this plugin.
 You can put these commands in a condition with the `YAZI_SHELL_SKIP_CMD` variable like so:
 ```bash
