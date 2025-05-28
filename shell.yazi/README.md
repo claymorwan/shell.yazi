@@ -1,4 +1,4 @@
-# zsh.yazi
+# shell.yazi
 
 A [yazi](https://github.com/sxyazi/yazi) for a better shell integration to run commands using your shell in order to enable your aliases and zsh plugins in the shell input box.
 Based on [this](https://github.com/sxyazi/yazi/issues/1206#issuecomment-2188759899) script with some tweaks of mine.
@@ -24,7 +24,7 @@ prepend_keymap = [
 ```
 
 # Usage
-Works like the usual shel block command: 
+Works like the usual shel block command:
 - press `;` for shell commands
 - press `:` for shell commands (as block)
 - press `!` for shell commands (as block, will immeditaly skip and close after running the command)
