@@ -7,7 +7,7 @@ A [yazi](https://github.com/sxyazi/yazi) plugin to easily make lutris install sc
 ## Installation
 ### Install plugin
 ```bash
-ya pack -a claymorwan/yazi-plugins:lutris
+ya pkg add claymorwan/yazi-plugins:lutris
 ```
 ### Setup keymaps
 Add this keymap to your `keymaps.toml` file:

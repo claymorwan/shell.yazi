@@ -10,7 +10,7 @@ For now only works with [Bash](https://www.gnu.org/software/bash/), [Zsh](https:
 ## Installation
 ### Install plugin
 ```bash
-ya pack -a claymorwan/yazi-plugins:shell
+ya pkg add claymorwan/yazi-plugins:shell
 ```
 ### Setup keymaps
 Add this to your `keymaps.toml` file:
