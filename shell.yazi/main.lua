@@ -8,7 +8,7 @@ local function run_shell(isblock, noskip)
 	local noskip_cmd = (noskip and "echo -en '\nPress [Enter] to continue'; read;" or "")
 
 	if event == 1 then
-		ya.manager_emit("shell", {
+		ya.emit("shell", {
 			"YAZI_SHELL_SKIP_CMD=true $SHELL -ic " .. ya.quote(value .. ";" .. noskip_cmd .. "exit", true),
 			block = isblock,
 			confirm = true,
