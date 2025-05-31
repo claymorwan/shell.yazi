@@ -1,6 +1,6 @@
 # lutris.yazi
 
-A [yazi](https://github.com/sxyazi/yazi) plugin to easily make lutris install script for games and install them
+A [yazi](https://github.com/sxyazi/yazi) plugin to easily make [Lutris](https://lutris.net/) install script for games and install them
 
 ## Installation
 ### Install plugin
